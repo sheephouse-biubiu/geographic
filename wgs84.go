@@ -30,7 +30,14 @@ func (w *Wgs84) ToECEF(lat, lon, alt float64) (x, y, z float64) {
 }
 
 func (w *Wgs84) ToENU(lat, lon, h float64) (east, north, up float64) {
-	e := Ecef{}
+	e := ECEF{}
 	x, y, h := w.ToECEF(lat, lon, h)
 	return e.toENU(w.o, x, y, h)
+}
+
+func (w *Wgs84) FromEnu(east, north, up float64) (lat, lon, alt float64) {
+	enu := ENU{}
+	x, y, z := enu.ToECEF(w.o, east, north, up)
+	ecef := ECEF{}
+	return ecef.ToWgs84(x, y, z)
 }

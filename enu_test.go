@@ -1,6 +1,8 @@
 package geographic
 
 import (
+	"fmt"
+	"math"
 	"testing"
 )
 
@@ -20,9 +22,10 @@ func Wgs84_ENU(w *Wgs84) {
 }
 
 func BenchmarkWgs84_ToENU(b *testing.B) {
+	fmt.Println(math.Pow(2, 0.5))
 	w := Wgs84{}
 	w.SetOrigin(29.746668757502476, 106.55388876468517, 239.23825073242188)
-	for n := 0; n < b.N; n++ {
-		w.ToENU(29.7466623337786, 106.5538601892096, 239.1483001708984)
-	}
+	x, y, z := w.ToENU(29.7466623337786, 106.5538601892096, 239.1483001708984)
+	lat, lon, alt := w.FromEnu(x, y, z)
+	fmt.Printf("%.15f, %.15f, %.15f\n", lat, lon, alt)
 }
