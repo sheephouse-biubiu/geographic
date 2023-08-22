@@ -1,7 +1,7 @@
 package geographic
 
 import (
-	"fmt"
+	//"fmt"
 	"math"
 )
 
