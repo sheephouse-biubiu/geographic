@@ -48,7 +48,7 @@ func (e *ECEF) ToWgs84(x, y, z float64) (lat0, lon0, h0 float64) {
 	F := 54 * b2 * z2
 	G := r2 + (1-e2)*z2 - e2*E2
 	c := (e2 * e2 * F * r2) / (G * G * G)
-	fmt.Printf("%0.15f\n", 1+c+math.Sqrt(c*c+2*c))
+	//fmt.Printf("%0.15f\n", 1+c+math.Sqrt(c*c+2*c))
 	s := math.Pow(1+c+math.Sqrt(c*c+2*c), 1.0/3.0)
 
 	P := F / (3 * math.Pow((s+1/s+1), 2) * G * G)
