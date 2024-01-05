@@ -28,6 +28,8 @@ func ParseString(str string, sc string, ec string) string {
 	e := strings.Index(str, ec)
 	if e == -1 {
 		return ""
+	} else if ec == "" {
+		e = len(str)
 	}
 
 	return str[s:e]
